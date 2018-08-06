@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<script language="javascript">
+  function showPopup(obj) {
+    window.open("/photos/"+obj+"/", "a", "width=1060, height=815, left=150, top=100");
+  }
+ </script>
+
+<center>
+    <h1>{{ user.username }} 님의 파이스타그램!</h1>
+
+    {% if eq_ctx == 'true' %}
+    <table style="width:750px;">
+        <tr>
+            <td align="left">
+                <a href="/photos/upload/" class="btn btn-primary">파이스타그램 글쓰기</a>
+            </td>
+        </tr>
+    </table>
+    {% endif %}
+    {% for photo in user.photo_set.all %}
+    <table class="table table-bordered" style="width:750px;">
+        <tr>
+            <td align="center">이미지</td>
+            <td align="center">설명</td>
+        </tr>
+        <tr>
+            <td width="60%">
+                <img src="{{photo.image.url}}" width="100%" height="300" onclick="showPopup({{photo.id}});" />
+            </td>
+            <td align="center">
+                {{photo.content}}
+            </td>
+        </tr>
+    </table>
+    {% empty %}
+        게시한 사진이 없습니다.
+    {% endfor %}
+
+</center>
+{% endblock %}
+

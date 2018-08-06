@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>게시물 보기</h2>
+	<table class="table table-bordered" style="width:750px;">
+		<tr>
+			<td align="center">제목</td>
+			<td>{{article.title}}</td>
+		</tr>
+		<tr>
+			<td align="center">작성자</td>
+			<td>{{article.name}}</td>
+		</tr>
+		<tr>
+			<td align="center">내용</td>
+			<td>내용 : {{article.contents}}</td>
+		</tr>
+		<tr>
+			<td align="center">이메일</td>
+			<td>{{article.email}}</td>
+		</tr>
+		<tr>
+			<td align="center">URL</td>
+			<td>{{article.url}}</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><a href="/list" class="btn btn-default">목록보기</a></td>
+		</tr>
+	</table>
+{% endblock %}

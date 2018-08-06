@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <title>{% block page_title %}Pystagram{% endblock %}</title>
+    <meta charset="utf-8" />
+    <script src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+    <style>
+        ul.mylist, ol.mylist {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+
+            max-width: 900px;
+            width: 100%;
+        }
+
+        ul.mylist li, ol.mylist li {
+            display: inline-block;
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #efefef;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        ul.mylist li,
+        ol.mylist li {
+            -webkit-transition: background-color 0.3s linear;
+            -moz-transition: background-color 0.3s linear;
+            -ms-transition: background-color 0.3s linear;
+            -o-transition: background-color 0.3s linear;
+            transition: background-color 0.3s linear;
+        }
+
+        ul.mylist li:hover,
+        ol.mylist li:hover {
+            background-color: #f6f6f6;
+        }
+    </style>
+</head>
+
+<body>
+<center>
+     <img src="{% static '/img/instagram.jpg' %}" style="width:60px; height:55px;" onclick="location.href='/hello/'">
+    {% if user.is_authenticated %}
+    <!-- <nav> -->
+    <ul class="mylist">
+        <li><a href="/users/{{request.user}}">내 파이스타그램</a></li>
+        <li><a href="{% url 'memberlist' %}">둘러보기</a></li>
+        <li><a href="{% url 'list' %}">게시판</a></li>
+        <li>{{request.user}} 로그인!</li>
+        <li><a href="{% url 'logout' %}">로그아웃</a></li>
+    </ul>
+    <!-- </nav> -->
+    {% else %}
+    <!-- <nav> -->
+    <ul class="mylist">
+        <li><a href="{% url 'login' %}">내 파이스타그램</a></li>
+        <li><a href="{% url 'login' %}">둘러보기</a></li>
+        <li><a href="{% url 'login' %}">게시판</a></li>
+        <li><a href="{% url 'login' %}">로그인</a></li>
+        <li><a href="{% url 'signup' %}">회원가입</a></li>
+    </ul>
+    <!-- </nav> -->
+    {% endif %}
+
+{% block content %}{% endblock %}
+</center>
+</body>
+
+</html>
+
